@@ -10,25 +10,27 @@
     <link href="css/bootstrap.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
 
-    <script type="text/javascript" src="js/tabletop.js"></script>
+    <script type="text/javascript" src="js/tabletop.js"></script>    
     <script type="text/javascript">
-      window.onload = function() { init() };
 
-      var public_spreadsheet_url = 'https://docs.google.com/spreadsheets/d/1JJQNxd_hsmRGPAme8BsEY-Ij0jB3VOnMiATBqA-ROCg/pubhtml';
+  window.onload = function() { init() };
 
-      function init() {
-        Tabletop.init( { key: public_spreadsheet_url,
-                         callback: showInfo,
-                         simpleSheet: true } )
-      }
+  var public_spreadsheet_url = 'https://docs.google.com/spreadsheets/d/1JJQNxd_hsmRGPAme8BsEY-Ij0jB3VOnMiATBqA-ROCg/pubhtml';
 
-      function showInfo(data, tabletop) {
-        //alert("Successfully processed!")
-        console.log(data[0].pname);
-      }
+  function init() {
+    Tabletop.init( { key: public_spreadsheet_url,
+                     callback: showInfo,
+                     simpleSheet: true } )
+  }
 
-     
-    </script>
+  function showInfo(data, tabletop) {
+    alert("Successfully processed!")
+    console.log(data[0].pname);
+
+      document.getElementById('patient').innerHtml ="tttrtrtr"
+
+  }
+</script>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -148,14 +150,15 @@
   <!-- Default panel contents -->
   <div class="panel-body">
     <div class="row">
-      <div><span class="patient_name"></span><span class="room_no">Room no. 14</span></div>
+      <div><span class="patient_name">aditya dipankar</span><span class="room_no">Room no. 14</span></div>
       <div><span class="condition">CCCP</span><span class="doctor_name label label-default">CP</span><span class="doctor_name label label-info">AP</span></div>
   </div>
 </section>
 </a>
 
+
 <a href="http://notnarayan.github.io/DDX/patient_1.html">
-<section class="padd margin_10">
+<section class="padd margin_10" id="pid">
   <div class="panel panel-default doctor_color">
   <!-- Default panel contents -->
   <div class="panel-body">
@@ -165,6 +168,16 @@
     </div>
 </section>
 </a>
+
+
+<ul>
+  <li id="patient">fsdfsfsdf</li>
+</ul>
+
+
+
+
+
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
