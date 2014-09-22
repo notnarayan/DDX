@@ -10,6 +10,26 @@
     <link href="css/bootstrap.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
 
+    <script type="text/javascript" src="js/tabletop.js"></script>
+    <script type="text/javascript">
+      window.onload = function() { init() };
+
+      var public_spreadsheet_url = 'https://docs.google.com/spreadsheets/d/1JJQNxd_hsmRGPAme8BsEY-Ij0jB3VOnMiATBqA-ROCg/pubhtml';
+
+      function init() {
+        Tabletop.init( { key: public_spreadsheet_url,
+                         callback: showInfo,
+                         simpleSheet: true } )
+      }
+
+      function showInfo(data, tabletop) {
+        //alert("Successfully processed!")
+        console.log(data[0].pname);
+      }
+
+     
+    </script>
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -128,7 +148,7 @@
   <!-- Default panel contents -->
   <div class="panel-body">
     <div class="row">
-      <div><span class="patient_name">aditya dipankar</span><span class="room_no">Room no. 14</span></div>
+      <div><span class="patient_name"></span><span class="room_no">Room no. 14</span></div>
       <div><span class="condition">CCCP</span><span class="doctor_name label label-default">CP</span><span class="doctor_name label label-info">AP</span></div>
   </div>
 </section>
