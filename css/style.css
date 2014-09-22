@@ -1,0 +1,47 @@
+.panel{
+	margin-bottom: 10px;
+}
+
+.back_color{
+	background-color: #eee;
+}
+
+.doctor_color{
+  border-left:5px solid #d9534f;
+
+}
+.margin_10{
+  padding-left:10px;
+  padding-right:10px;
+  padding-top: 10px;
+}
+.small_header{
+  font-size: 10px;
+  font-weight: 500;
+}
+.patient_name{
+font-size: 16px;
+font-weight: 500;
+line-height: 20px;
+margin-left: 10px;
+text-transform: uppercase;
+
+}
+
+.condition{
+font-size: 14px;
+line-height: 20px;
+margin-left: 10px;
+}
+
+.room_no{
+font-size: 14px;
+line-height: 20px;
+margin-right: 10px;
+float: right;
+}
+
+.doctor_name{
+margin-right: 10px;
+float: right;
+}
