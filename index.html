@@ -18,25 +18,30 @@
 
   function init() {
     Tabletop.init( { key: public_spreadsheet_url,
-                     callback: showInfo,
+                     callback: feedInfo,
                      simpleSheet: true } )
   }
 
   function showInfo(data, tabletop) {
-    console.log(data);
+    //console.log(data);
   }
 
   function feedInfo(data,tabletop){
     //console.log(data[1].pid); 
     //console.log(data.length); 
-
-    l =data.length;
+    var stringg;
+    var l = data.length;
+    
     for(i=0;i<l;i++)
     {
       console.log(data[i]);
-      document.getElementById('patient').innerHtml += "<li>"+data[i].pname+"</li>";
-      console.log(document.getElementById('patient').innerHtml)
+      stringg += "<li>"+data[i].pname+"</li> <li>"+data[i].pid+"</li>";
+
+
+      console.log(stringg);
     }
+
+    document.getElementById('patient').innerHTML = stringg;
 
 
   }
