@@ -9,7 +9,6 @@
     <!-- Bootstrap -->
     <link href="css/bootstrap.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
-
     <script type="text/javascript" src="js/tabletop.js"></script>    
     <script type="text/javascript">
 
@@ -24,8 +23,22 @@
   }
 
   function showInfo(data, tabletop) {
-    alert("Successfully processed!")
-    console.log(data[0].pname);
+    console.log(data);
+  }
+
+  function feedInfo(data,tabletop){
+    //console.log(data[1].pid); 
+    //console.log(data.length); 
+
+    l =data.length;
+    for(i=0;i<l;i++)
+    {
+      console.log(data[i]);
+      document.getElementById('patient').innerHtml += "<li>"+data[i].pname+"</li>";
+      console.log(document.getElementById('patient').innerHtml)
+    }
+
+
   }
 </script>
 
@@ -167,14 +180,10 @@
 </a>
 
 
-<ul>
-  <li id="patient">fsdfsfsdf</li>
+
+<ul id='patient'>
+  
 </ul>
-
-
-
-
-
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
