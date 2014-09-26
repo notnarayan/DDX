@@ -10,6 +10,7 @@
     <link href="css/bootstrap.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
     <script type="text/javascript" src="js/tabletop.js"></script>    
+    
 
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -21,6 +22,7 @@
 
   <script type="text/javascript">
   window.onload = function() { init() };
+
       var public_spreadsheet_url = 'https://docs.google.com/spreadsheets/d/1JJQNxd_hsmRGPAme8BsEY-Ij0jB3VOnMiATBqA-ROCg/pubhtml';
 
    function init() {
@@ -33,26 +35,67 @@
       x = data;
       var pid_url = location.search.split('=')[1];
       for(i=0;i<data.length;i++)
-      {
+    {
       if( data[i].pid == pid_url)
       {
         //console.log(data[i].pname);
-        var string ="";
+        var string_diagnosis ="";
+        var string_investigations ="";
+        var string_treatment ="";
+        var string_medication ="";
+                       //how to take this to another page and create a form there. 
+        var patient_index_card="";
+        patient_index_card += "<div class='panel panel-default doctor_color_"+data[i].status+"'>"+
+                   "<div class='panel-body'>"+
+                      "<div class='row'>"+
+                        "<div><span class='patient_name'>"+data[i].pname+"</span><span class='room_no'>"+data[i].pid+"</span></div>"+
+                        "<div><span class='condition'>"+data[i].medhistory+"</span><span class='doctor_name label label-default'>"+data[i].doc+"</span></div>"+
+                      "</div>"+
+                    "</div>"+
+      "</div>";
 
-        string +=  "<ul class='list-group'><li>"+data[i].pname+"</li>"+
-                       "<li>"+data[i].pid+"</li>"+
-                       "<li>"+data[i].pcondition+"</li>"+
-                       "<li>"+data[i].medhistory+"</li>"+
-                       "<li>"+data[i].diagnosis+"</li>"+
-                       "<li>"+data[i].invest+"</li>"+
-                       "<li>"+data[i].treatment+"</li>"+
-                       "<li>"+data[i].medication+"</li>"+
-                       "<li>"+data[i].pcondition+"</li></ul>";
+      string_diagnosis += "<div class='panel panel-default'>"+
+                   "<div class='panel-body'>"+
+                      "<div class='row'>"+
+                        "<p class='small_header'>diagnosis</p><div><span class='patient_data'>"+data[i].diagnosis+"</div>"+
+                      "</div>"+
+                    "</div>"+
+      "</div>";
+
+        string_investigations += "<div class='panel panel-default'>"+
+                   "<div class='panel-body'>"+
+                      "<div class='row'>"+
+                        "<p class='small_header'>investigations</p><div><span class='patient_data'>"+data[i].invest+"</div>"+
+                      "</div>"+
+                    "</div>"+
+      "</div>";
+
+      string_treatment += "<div class='panel panel-default'>"+
+                   "<div class='panel-body'>"+
+                      "<div class='row'>"+
+                        "<p class='small_header'>treatment</p><div><span class='patient_data'>"+data[i].treatment+"</div>"+
+                      "</div>"+
+                    "</div>"+
+      "</div>";
+      
+
+      string_medication += "<div class='panel panel-default'>"+
+                   "<div class='panel-body'>"+
+                      "<div class='row'>"+
+                        "<p class='small_header'>medication</p><div><span class='patient_data'>"+data[i].medication+"</div>"+
+                      "</div>"+
+                    "</div>";
+                  
+
+      //replace with an .html template.
+      document.getElementById('patient_medical_history').innerHTML = patient_index_card;
+      document.getElementById('patient_diagnosis').innerHTML = string_diagnosis;
+      document.getElementById('patient_investigations').innerHTML = string_investigations;
+      document.getElementById('patient_treatment').innerHTML = string_treatment;
+      document.getElementById('patient_medication').innerHTML = string_medication;
+     }
       }
-      document.getElementById('patient_data').innerHTML = string;
-    }
 }
-
   </script>
 
   </head>
@@ -67,12 +110,11 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="./DDX_files/DDX.html">APOLLO SUPER SPECIALITY HOSPITAL</a>
+      <a class="navbar-brand" href="">APOLLO SUPER SPECIALITY HOSPITAL</a>
     </div>
-
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <!-- <ul class="nav navbar-nav">
+      <!-- <ul class="nav navbar-nav"
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
@@ -109,12 +151,11 @@
   </div><!-- /.container-fluid -->
 </nav>
 
-
-<div class="panel panel-default padd margin_10">
-<div id="patient_data">
-
-</div>
-</div>
+<div class="padd margin_10" id="patient_medical_history"></div>
+<div class="padd margin_10" id="patient_diagnosis"></div>
+<div class="padd margin_10" id="patient_investigations"></div>
+<div class="padd margin_10" id="patient_treatment"></div>
+<div class="padd margin_10" id="patient_medication"></div>
 
 
 
@@ -122,6 +163,4 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
-  
-
 </body></html>

@@ -37,6 +37,8 @@ a{
 .small_header{
   font-size: 10px;
   font-weight: 500;
+  text-transform: uppercase;
+  margin-left: 10px;
 }
 .patient_name{
 font-size: 16px;
@@ -44,7 +46,14 @@ font-weight: 500;
 line-height: 20px;
 margin-left: 10px;
 text-transform: uppercase;
+}
 
+.patient_data{
+font-size: 16px;
+font-weight: 500;
+line-height: 20px;
+margin-left: 10px;
+text-transform: capitalize;
 }
 
 .condition{
