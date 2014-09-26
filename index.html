@@ -22,6 +22,7 @@
                      simpleSheet: true } )
   }
   var all_data;
+  
   function feedInfo(data){
     if (!all_data) {
       all_data = data;
@@ -29,6 +30,7 @@
     //console.log(data[1].pid); 
     //console.log(data.length); 
     var string ="";
+    var param ="";
     var l = data.length; 
     for(i=0;i<l;i++)
     {
@@ -36,14 +38,18 @@
       //string += "<ul>"+"<li>"+data[i].pname+"</li><li>"+data[i].pid+"</li>"+"</ul>";
       //"<div class='panel panel-default doctor_color'>"+
       string +=  "<div class='panel panel-default doctor_color_"+data[i].status+"'>"+
-                   "<div class='panel-body'>"+
+                   "<a href= 'patient.html?pid="+data[i].pid+"'><div class='panel-body'>"+
                       "<div class='row'>"+
                         "<div><span class='patient_name'>"+data[i].pname+"</span><span class='room_no'>"+data[i].pid+"</span></div>"+
                         "<div><span class='condition'>"+data[i].pcondition+"</span><span class='doctor_name label label-default'>"+data[i].doc+"</span></div>"+
-                      "</div></div></div>";
+                      "</div></div></a></div>";
+      
+      param = data[i].pid;               
+      console.log(param);
     }
     document.getElementById('patient').innerHTML = string;
   }
+
   function filterData(status) {
     var filteredData = [];
     if (status == 'all')
@@ -58,6 +64,7 @@
     }
     feedInfo(filteredData);
   }
+
 </script>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->

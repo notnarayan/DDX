@@ -9,6 +9,7 @@
     <!-- Bootstrap -->
     <link href="css/bootstrap.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
+    <script type="text/javascript" src="js/tabletop.js"></script>    
 
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -19,11 +20,38 @@
     <![endif]-->
 
   <script type="text/javascript">
-    function(split){
-      var location;
-      location = location.search.split('=');
-      console.log(location);
+  window.onload = function() { init() };
+      var public_spreadsheet_url = 'https://docs.google.com/spreadsheets/d/1JJQNxd_hsmRGPAme8BsEY-Ij0jB3VOnMiATBqA-ROCg/pubhtml';
+
+   function init() {
+    Tabletop.init( { key: public_spreadsheet_url,
+                     callback: feedPatient,
+                     simpleSheet: true } )
+  }      
+
+    function feedPatient(data){
+      x = data;
+      var pid_url = location.search.split('=')[1];
+      for(i=0;i<data.length;i++)
+      {
+      if( data[i].pid == pid_url)
+      {
+        //console.log(data[i].pname);
+        var string ="";
+
+        string +=  "<ul class='list-group'><li>"+data[i].pname+"</li>"+
+                       "<li>"+data[i].pid+"</li>"+
+                       "<li>"+data[i].pcondition+"</li>"+
+                       "<li>"+data[i].medhistory+"</li>"+
+                       "<li>"+data[i].diagnosis+"</li>"+
+                       "<li>"+data[i].invest+"</li>"+
+                       "<li>"+data[i].treatment+"</li>"+
+                       "<li>"+data[i].medication+"</li>"+
+                       "<li>"+data[i].pcondition+"</li></ul>";
+      }
+      document.getElementById('patient_data').innerHTML = string;
     }
+}
 
   </script>
 
@@ -80,63 +108,20 @@
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
-<section class="padd margin_10">
-	<div class="panel panel-default doctor_color">
-  <!-- Default panel contents -->
- <a href="http://notnarayan.github.io/DDX/">
-  <div class="panel-heading"><p>ADITYA DIPANKAR</p>
-    <a href="">add number</a>
-    <a href="">add existing condition</a>
-    <a href="">add allergies</a>
-  </div>
-  </a> 
 
-  <div class="panel-body">
-    <div>
-		<h6>PATIENT STATUS: IN-PATIENT ROOM NO. 9</h6>
 
-		<!-- <p>
-		complained of H/O Fever, Lymphanaemedia and was diagnosed with Acute Lymphanademeosis
-		</p> -->
-    </div>
-  </div>
+<div class="panel panel-default padd margin_10">
+<div id="patient_data">
 
-  <!-- List group -->
-  <ul class="list-group">
-    <li class="list-group-item"><p class="small_header">DIAGNOSIS</p>
-		<p>15th August: Acute hemaphilialolysis</p>
-		<p>16th August: Acute Metastatic stage 2 meolysis</p>
-		<b><p>17th August: Vitamin K deficiency</p></b>
-    </li>
-
-    <li class="list-group-item"><p class="small_header">INVESTIGATIONS</p>
-	<p>15th August: Acute hemaphilialolysis test done - negative</p>
-		<p>16th August: Acute Metastatic stage 2 meolysis - negative</p>
-		<b><p>17th August: Vitamin K deficiency test - positive</p></b>
-    </li>
-    <li class="list-group-item"><p class="small_header">TREATMENTS</p>
-	<p>15th August: Acute hemaphilialolysis test done - negative</p>
-		<p>16th August: Acute Metastatic stage 2 meolysis - negative</p>
-		<b><p>17th August: Vitamin K deficiency test - positive</p></b>
-    </li>
-    <li class="list-group-item"><p class="small_header">PAST MEDICAL HISTORY</p>
-	<p>15th August: Acute hemaphilialolysis test done - negative</p>
-		<p>16th August: Acute Metastatic stage 2 meolysis - negative</p>
-		<b><p>17th August: Vitamin K deficiency test - positive</p></b>
-    </li>
-    <li class="list-group-item"><p class="small_header">MEDICATIONS</p>
-	<p>15th August: Acute hemaphilialolysis test done - negative</p>
-		<p>16th August: Acute Metastatic stage 2 meolysis - negative</p>
-		<b><p>17th August: Vitamin K deficiency test - positive</p></b>
-    </li>
-  </ul>
 </div>
-</section>
+</div>
+
+
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="./DDX_files/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="./DDX_files/bootstrap.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
   
 
 </body></html>
