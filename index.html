@@ -64,8 +64,34 @@
     }
     feedInfo(filteredData);
   }
+  </script>
 
-</script>
+  <script>
+        function postContactToGoogle() {
+            var patient_name = $('#patient_name').val();
+            var patient_id = $('#patient_id').val();
+            var patient_urgent = $('#patient_urgent').val();
+            //var patient_unstable = $('#patient_unstable').val();
+            //var patient_stable = $('#patient_stable').val();
+
+
+                $.ajax({
+                    url: "https://docs.google.com/forms/d/18gqoxHhLNYwq8VRG5eZTrJjKtvFu6BGLSZXmlF2p63w/formResponse",
+                    data: { "entry.1454409565": patient_name, 
+                    "entry.1296092026": patient_id},
+                    type: "POST",
+                    dataType: "xml",
+                    statusCode: {
+                        0: function () {
+                            window.location.replace("index.html");
+                        },
+                        200: function () {
+                            window.location.replace("index.html");
+                        }
+                    }
+                });
+        }
+    </script>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -85,7 +111,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">APOLLO HOSPITAL</a>
+      <a class="navbar-brand" href="#">DDX</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -142,6 +168,7 @@
   </div></div>
  <div class="margin_10"><button class="btn btn-default" data-toggle="modal" data-target="#addPatient">Add Patient</button></div>
  <!-- addPatient -->
+
 <div class="modal fade" id="addPatient" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -153,28 +180,28 @@
         <form>
              <div class="form-group">
               <label for="exampleInputEmail1">NAME</label>
-              <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter name"></div>
+              <input type="email" class="form-control" id="patient_name" placeholder="Enter name"></div>
 
              <div class="form-group">
               <label for="exampleInputEmail1">ID</label>
-              <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter patient ID"></div>
+              <input type="email" class="form-control" id="patient_id" placeholder="Enter patient ID"></div>
               
               <div class="btn-group btn-group-justified">
                 <div class="btn-group">
-                    <button type="button" class="btn btn-danger btn_10 btn-default">URGENT</button>
+                    <button type="button" class="btn btn-danger btn_10 btn-default" id="patient_urgent">URGENT</button>
                   </div>
                   <div class="btn-group">
-                    <button type="button" class="btn btn-warning btn_10 btn-default">UNSTABLE</button>
+                    <button type="button" class="btn btn-warning btn_10 btn-default" id="patient_unstable">UNSTABLE</button>
                   </div>
                   <div class="btn-group">
-                    <button type="button" class="btn btn-info btn_10 btn-default">STABLE</button>
-                </div></div>
-
+                    <button type="button" class="btn btn-info btn_10 btn-default" id="patient_stable">STABLE</button>
+                </div>
+            </div>
         </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-        <button type="button" class="btn btn-primary">Save </button>
+        <button type="button" class="btn btn-primary" onclick="postContactToGoogle()" >Save </button>
       </div>
     </div>
   </div>
