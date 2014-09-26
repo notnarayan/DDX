@@ -21,29 +21,42 @@
                      callback: feedInfo,
                      simpleSheet: true } )
   }
-
-  function showInfo(data, tabletop) {
-    //console.log(data);
-  }
-
-  function feedInfo(data,tabletop){
+  var all_data;
+  function feedInfo(data){
+    if (!all_data) {
+      all_data = data;
+    }
     //console.log(data[1].pid); 
     //console.log(data.length); 
-    var stringg;
-    var l = data.length;
-    
+    var string ="";
+    var l = data.length; 
     for(i=0;i<l;i++)
     {
-      console.log(data[i]);
-      stringg += "<li>"+data[i].pname+"</li> <li>"+data[i].pid+"</li>";
-
-
-      console.log(stringg);
+      
+      //string += "<ul>"+"<li>"+data[i].pname+"</li><li>"+data[i].pid+"</li>"+"</ul>";
+      //"<div class='panel panel-default doctor_color'>"+
+      string +=  "<div class='panel panel-default doctor_color_"+data[i].status+"'>"+
+                   "<div class='panel-body'>"+
+                      "<div class='row'>"+
+                        "<div><span class='patient_name'>"+data[i].pname+"</span><span class='room_no'>"+data[i].pid+"</span></div>"+
+                        "<div><span class='condition'>"+data[i].pcondition+"</span><span class='doctor_name label label-default'>"+data[i].doc+"</span></div>"+
+                      "</div></div></div>";
     }
+    document.getElementById('patient').innerHTML = string;
+  }
+  function filterData(status) {
+    var filteredData = [];
+    if (status == 'all')
+      filteredData = all_data;
 
-    document.getElementById('patient').innerHTML = stringg;
-
-
+    else{
+    for (i=0; i < all_data.length; i++) {
+        if (all_data[i].status == status) {
+          filteredData.push(all_data[i]);
+         }
+        }
+    }
+    feedInfo(filteredData);
   }
 </script>
 
@@ -109,13 +122,16 @@
 
 <div class="margin_10 btn-group btn-group-justified">
   <div class="btn-group">
-    <button type="button" class="btn btn-danger btn-default">URGENT</button>
+    <button type="button" class="btn btn-danger" onClick="filterData('urgent')">URGENT</button>
   </div>
   <div class="btn-group">
-    <button type="button" class="btn btn-warning btn-default">UNSTABLE</button>
+    <button type="button" class="btn btn-warning" onClick="filterData('unstable')">UNSTABLE</button>
   </div>
   <div class="btn-group">
-    <button type="button" class="btn btn-info btn-default">STABLE</button>
+    <button type="button" class="btn btn-info" onClick="filterData('stable')">STABLE</button>
+  </div>
+<div class="btn-group">
+    <button type="button" class="btn btn-default" onClick="filterData('all')">ALL</button>
   </div></div>
  <div class="margin_10"><button class="btn btn-default" data-toggle="modal" data-target="#addPatient">Add Patient</button></div>
  <!-- addPatient -->
@@ -156,39 +172,9 @@
     </div>
   </div>
 </div>
-
   
+<section id='patient' class="padd margin_10"></section>
 
-<a href="http://notnarayan.github.io/DDX/patient_1.html">
-  <section class="padd margin_10">
-	<div class="panel panel-default doctor_color">
-  <!-- Default panel contents -->
-  <div class="panel-body">
-    <div class="row">
-      <div><span class="patient_name">aditya dipankar</span><span class="room_no">Room no. 14</span></div>
-      <div><span class="condition">CCCP</span><span class="doctor_name label label-default">CP</span><span class="doctor_name label label-info">AP</span></div>
-  </div>
-</section>
-</a>
-
-
-<a href="http://notnarayan.github.io/DDX/patient_1.html">
-<section class="padd margin_10" id="pid">
-  <div class="panel panel-default doctor_color">
-  <!-- Default panel contents -->
-  <div class="panel-body">
-    <div class="row">
-      <div><span class="patient_name">mihir shukla</span><span class="room_no">Room no. 10</span></div>
-      <div><span class="condition">CCCP</span><span class="doctor_name label label-default">CP</span></div>
-    </div>
-</section>
-</a>
-
-
-
-<ul id='patient'>
-  
-</ul>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
