@@ -14,6 +14,9 @@
 
   window.onload = function() { init() };
 
+//OLD DATA  https://docs.google.com/spreadsheets/d/1JJQNxd_hsmRGPAme8BsEY-Ij0jB3VOnMiATBqA-ROCg/pubhtml'
+//patient_data_current_master https://docs.google.com/spreadsheets/d/1JJQNxd_hsmRGPAme8BsEY-Ij0jB3VOnMiATBqA-ROCg/pubhtml
+
   var public_spreadsheet_url = 'https://docs.google.com/spreadsheets/d/1JJQNxd_hsmRGPAme8BsEY-Ij0jB3VOnMiATBqA-ROCg/pubhtml';
 
   function init() {
@@ -64,17 +67,26 @@
     }
     feedInfo(filteredData);
   }
+
+//        var = current_status function getRadioCheckedValue(radio_name){
+  //        var urgent = document.getElementById('urgent');
+    //      var urgent = document.getElementById('urgent');
+
+      
+
         function postContactToGoogle() {
             var patient_name = $('#patient_name').val();
             var patient_id = $('#patient_id').val();
-            var patient_urgent = $('#patient_urgent').val();
+            var doctor = $('#doctor').val();
+            console.log(doctor);
             //var patient_unstable = $('#patient_unstable').val();
             //var patient_stable = $('#patient_stable').val();
 
                 $.ajax({
-                    url: "https://docs.google.com/forms/d/18gqoxHhLNYwq8VRG5eZTrJjKtvFu6BGLSZXmlF2p63w/formResponse",
-                    data: { "entry.1454409565": patient_name, 
-                            "entry.1296092026": patient_id},
+                    url: "https://docs.google.com/forms/d/1USoJVcVWnc4YwnPNV9P9ADJcFLXQcM0D1DpAbPFvStM/formResponse",
+                    data: { "entry.1033815266": patient_name, 
+                            "entry.628930850": patient_id,
+                            "entry.1545783151":doctor},
                     type: "POST",
                     dataType: "json",
                     statusCode: {
@@ -84,7 +96,7 @@
                         200: function () {
                             window.location.replace("index.html");
                         }
-                    }
+                    } 
                 });
         }
     </script>
@@ -151,20 +163,19 @@
 
 <div class="margin_10 btn-group btn-group-justified">
   <div class="btn-group">
-    <button type="button" class="btn btn-danger btn_10" onClick="filterData('urgent')">URGENT</button>
+    <button type="button" class="btn btn-danger btn_10" onClick="filterData('urgent')" id="urgent">URGENT</button>
   </div>
   <div class="btn-group">
-    <button type="button" class="btn btn-warning btn_10" onClick="filterData('unstable')">UNSTABLE</button>
+    <button type="button" class="btn btn-warning btn_10" onClick="filterData('unstable')" id="unstable">UNSTABLE</button>
   </div>
   <div class="btn-group">
-    <button type="button" class="btn btn-info btn_10" onClick="filterData('stable')">STABLE</button>
+    <button type="button" class="btn btn-info btn_10" onClick="filterData('stable')" id="stable">STABLE</button>
   </div>
 <div class="btn-group">
     <button type="button" class="btn btn-default btn_10" onClick="filterData('all')">ALL</button>
   </div></div>
  <div class="margin_10"><button class="btn btn-default" data-toggle="modal" data-target="#addPatient">Add Patient</button></div>
  <!-- addPatient -->
-
 <div class="modal fade" id="addPatient" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -181,6 +192,12 @@
              <div class="form-group">
               <label for="exampleInputEmail1">ID</label>
               <input type="email" class="form-control" id="patient_id" placeholder="Enter patient ID"></div>
+
+              <div class="form-group">
+              <label for="exampleInputEmail1">DOCTOR</label>
+              <input type="email" class="form-control" id="doctor" placeholder="Assign doctor"></div>
+
+
               
               <div class="btn-group btn-group-justified">
                 <div class="btn-group">

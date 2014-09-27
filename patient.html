@@ -96,6 +96,33 @@
      }
       }
 }
+
+function postContactToGoogle() {
+            var patient_diagnosis = $('#patient_diagnosis').val();
+            var patient_id = $('#patient_id').val();
+            var patient_urgent = $('#patient_urgent').val();
+            //var patient_unstable = $('#patient_unstable').val();
+            //var patient_stable = $('#patient_stable').val();
+
+                $.ajax({
+                    url: "https://docs.google.com/forms/d/1USoJVcVWnc4YwnPNV9P9ADJcFLXQcM0D1DpAbPFvStM/formResponse",
+                    data: { "entry.2064686654": patient_diagnosis, 
+                            "entry.1296092026": patient_id},
+                    type: "POST",
+                    dataType: "json",
+                    statusCode: {
+                        0: function () {
+                            window.location.replace("index.html");
+                        },
+                        200: function () {
+                            window.location.replace("index.html");
+                        }
+                    }
+                });
+        }
+
+
+
   </script>
 
   </head>
@@ -168,7 +195,7 @@
       <div class="modal-body">
         <form>
              <div class="form-group">
-              <input type="text" class="form-control" id="patient_name"></div>
+              <input type="text" class="form-control" id="patient_diagnosis"></div>
         </form>
       </div>
       <div class="modal-footer">
