@@ -108,7 +108,7 @@ function postContactToGoogle() {
                     url: "https://docs.google.com/forms/d/1USoJVcVWnc4YwnPNV9P9ADJcFLXQcM0D1DpAbPFvStM/formResponse",
                     data: { "entry.2064686654": patient_diagnosis, 
                             "entry.1296092026": patient_id},
-                    type: "POST",
+                    type: "POST", //how to post to patients pid 
                     dataType: "json",
                     statusCode: {
                         0: function () {
@@ -197,6 +197,7 @@ function postContactToGoogle() {
              <div class="form-group">
               <input type="text" class="form-control" id="patient_diagnosis"></div>
         </form>
+      
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>

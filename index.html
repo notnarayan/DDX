@@ -78,6 +78,10 @@
             var patient_name = $('#patient_name').val();
             var patient_id = $('#patient_id').val();
             var doctor = $('#doctor').val();
+            var condition = $('#condition').val();
+            
+
+
             console.log(doctor);
             //var patient_unstable = $('#patient_unstable').val();
             //var patient_stable = $('#patient_stable').val();
@@ -86,7 +90,8 @@
                     url: "https://docs.google.com/forms/d/1USoJVcVWnc4YwnPNV9P9ADJcFLXQcM0D1DpAbPFvStM/formResponse",
                     data: { "entry.1033815266": patient_name, 
                             "entry.628930850": patient_id,
-                            "entry.1545783151":doctor},
+                            "entry.1545783151":doctor,
+                            "entry.1201077675":condition},
                     type: "POST",
                     dataType: "json",
                     statusCode: {
@@ -196,6 +201,9 @@
               <div class="form-group">
               <label for="exampleInputEmail1">DOCTOR</label>
               <input type="email" class="form-control" id="doctor" placeholder="Assign doctor"></div>
+              <div class="form-group">
+              <label for="exampleInputEmail1">Diagnosis</label>
+              <input type="email" class="form-control" id="condition" placeholder="diagnose"></div>
 
 
               
