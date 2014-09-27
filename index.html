@@ -64,9 +64,6 @@
     }
     feedInfo(filteredData);
   }
-  </script>
-
-  <script>
         function postContactToGoogle() {
             var patient_name = $('#patient_name').val();
             var patient_id = $('#patient_id').val();
@@ -74,13 +71,12 @@
             //var patient_unstable = $('#patient_unstable').val();
             //var patient_stable = $('#patient_stable').val();
 
-
                 $.ajax({
                     url: "https://docs.google.com/forms/d/18gqoxHhLNYwq8VRG5eZTrJjKtvFu6BGLSZXmlF2p63w/formResponse",
                     data: { "entry.1454409565": patient_name, 
-                    "entry.1296092026": patient_id},
+                            "entry.1296092026": patient_id},
                     type: "POST",
-                    dataType: "xml",
+                    dataType: "json",
                     statusCode: {
                         0: function () {
                             window.location.replace("index.html");
